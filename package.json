@@ -1,0 +1,19 @@
+{
+  "name": "react-js-starter-kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArmanAbbasi/react-js-starter-kit.git"
+  },
+  "author": "Arman Abbasi",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ArmanAbbasi/react-js-starter-kit/issues"
+  },
+  "homepage": "https://github.com/ArmanAbbasi/react-js-starter-kit#readme"
+}
