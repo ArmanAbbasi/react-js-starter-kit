@@ -1,6 +1,6 @@
 {
     "root": true,
-    "extends": "airbnb",
+    "extends": "",
 
     "globals": {
         "require": true
@@ -16,9 +16,9 @@
     "parser": "babel-eslint",
 
     "rules": {
-        "indent": ["error", 4],
-        "comma-dangle": ["error", "never"],
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"]
+        "indent": [2, 4],
+        "comma-dangle": [2, "never"],
+        "quotes": [2, "single"],
+        "semi": [2, "always"]
     }
 }
