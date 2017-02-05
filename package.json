@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ArmanAbbasi/react-js-starter-kit/issues"
   },
-  "homepage": "https://github.com/ArmanAbbasi/react-js-starter-kit#readme"
+  "homepage": "https://github.com/ArmanAbbasi/react-js-starter-kit#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.15.0"
+  }
 }
