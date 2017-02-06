@@ -1,14 +1,10 @@
-let React = require('react');
-let Map = require('./components/Map');
+import React from 'react';
+import Map from './components/Map';
 
-const App = React.createClass({
-    render () {
-        return (
-            <div>
-                <Map/>
-            </div>
-        );
-    }
-});
+const App = (props) => (
+    <div>
+        <Map/>
+    </div>
+);
 
-module.exports = App;
+export default App;

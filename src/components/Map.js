@@ -1,6 +1,6 @@
-let React = require('react');
+import React from 'react';
 
-const Map = (props) => {
+const Map = () => {
     return (
         <div>
             MAP
@@ -8,4 +8,4 @@ const Map = (props) => {
     );
 };
 
-module.exports = Map;
+export default Map;

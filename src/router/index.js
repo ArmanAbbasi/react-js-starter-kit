@@ -1,14 +1,17 @@
-let ReactDOMServer = require('react-dom/server');
-let React = require('react');
+import ReactDOMServer from 'react-dom/server';
+import React from 'react';
+import App from '../App';
 
-let App = React.createFactory(require('../App'));
+let Factory = React.createFactory(App);
 
 /**
  * Registering our routes
  * */
-module.exports = (app) => {
+const Routes = (app) => {
     app.get('/', (req,res) => {
-        let reactHtml = ReactDOMServer.renderToString(App({}));
+        let reactHtml = ReactDOMServer.renderToString(Factory({}));
         res.render('index.ejs', { reactOutput: reactHtml });
     });
 };
+
+export default Routes;

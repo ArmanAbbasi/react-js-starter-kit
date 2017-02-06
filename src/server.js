@@ -1,3 +1,13 @@
+require('babel-core/register')({
+    presets: [
+        'stage-0',
+        'es2015',
+        'react'
+    ],
+    ignore: /node_modules/
+});
+require('./router');
+
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -33,7 +43,8 @@ app.set('view engine', 'ejs');
 /**
  * Routes
  * */
-require('./router')(app);
+console.log(require('./router').default);
+require('./router').default(app);
 
 /**
  * Gzip compression is a must
