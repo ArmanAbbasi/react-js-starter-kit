@@ -43,7 +43,6 @@ app.set('view engine', 'ejs');
 /**
  * Routes
  * */
-console.log(require('./router').default);
 require('./router').default(app);
 
 /**
