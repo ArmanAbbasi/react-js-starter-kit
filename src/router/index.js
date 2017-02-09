@@ -10,7 +10,7 @@ let Factory = React.createFactory(App);
 const Routes = (app) => {
     app.get('/', (req,res) => {
         let reactHtml = ReactDOMServer.renderToString(Factory({}));
-        res.render('index.ejs', { reactOutput: reactHtml });
+        res.render('index', { reactOutput: reactHtml });
     });
 };
 

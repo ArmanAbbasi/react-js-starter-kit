@@ -15,6 +15,7 @@ const app = express();
 const compression = require('compression');
 const staticAsset = require('static-asset');
 const zLib = require('zlib');
+const exphbs  = require('express-handlebars');
 
 const ONE_YEAR_IN_MILLIS = 31557600000;
 const APP_PORT_NUM = process.env.PORT || 3000;
@@ -38,7 +39,8 @@ app.set('views', __dirname + '/views');
 /**
  * View engine
  * */
-app.set('view engine', 'ejs');
+app.engine('.hbs', exphbs({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 /**
  * Routes
