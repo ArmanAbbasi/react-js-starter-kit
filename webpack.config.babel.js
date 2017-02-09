@@ -38,7 +38,7 @@ export default {
             loader: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [{
-                    loader: 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1',
+                    loader: 'css-loader',
                     options: {
                         sourceMap: false
                     }
