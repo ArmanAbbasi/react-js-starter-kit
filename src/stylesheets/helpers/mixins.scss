@@ -1,0 +1,8 @@
+/**
+ * Adding font-smoothing for browsers that do support it
+ */
+@mixin font-smoothing() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+}
