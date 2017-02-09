@@ -1,11 +1,11 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
 
 export default {
     entry: {
         app: path.resolve(__dirname, 'src', 'App.js'),
+        main: path.resolve(__dirname, 'src/stylesheets', 'global.scss'),
         vendor: [
             'react'
         ]
@@ -18,7 +18,12 @@ export default {
     },
 
     resolve: {
-        extensions: ['.js', '.scss', '.css']
+        extensions: ['.js', '.css', '.scss'],
+        modules: [
+            'client',
+            'common',
+            'node_modules'
+        ]
     },
 
     module: {
@@ -31,30 +36,23 @@ export default {
         }, {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract({
-                use: [
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: false
-                        }
-                    }, {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: false
-                        }
+                fallback: 'style-loader',
+                use: [{
+                    loader: 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1',
+                    options: {
+                        sourceMap: false
                     }
-                ],
-                fallback: 'style-loader'
+                }, {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: false
+                    }
+                }]
             })
         }]
     },
 
     plugins: [
-        new CopyWebpackPlugin([{
-            from: './src/images/**/*',
-            to: 'images',
-            flatten: true
-        }]),
         new ExtractTextPlugin({ filename: '[name].[chunkhash].css' }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
