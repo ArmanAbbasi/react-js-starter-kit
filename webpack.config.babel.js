@@ -1,6 +1,7 @@
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import  HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
     entry: {
@@ -14,7 +15,7 @@ export default {
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: '[name].[chunkhash].js'
+        filename: `[name].${process.env.NODE_ENV === 'production' ? '[chunkhash].' : ''}js`
     },
 
     resolve: {
@@ -53,7 +54,9 @@ export default {
     },
 
     plugins: [
-        new ExtractTextPlugin({ filename: '[name].[chunkhash].css' }),
+        new ExtractTextPlugin({
+            filename: `[name].${process.env.NODE_ENV === 'production' ? '[chunkhash].' : ''}css`
+        }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
@@ -65,6 +68,12 @@ export default {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
+        }),
+        new HtmlWebpackPlugin({
+            filename: '../src/views/partials/embeds.hbs',
+            template: 'src/views/partials/embeds.template.html',
+            inject: false,
+            genFileText: '<!-- This is a generated file -->'
         })
     ],
 

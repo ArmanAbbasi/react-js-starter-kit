@@ -27,8 +27,8 @@ require('node-jsx').install();
 /**
  * Indicating our static folder and setting caching duration
  * */
-app.use(`/${DISTRIBUTION_FOLDER}`, staticAsset(path.resolve(__dirname) + '/dist/', { maxAge: ONE_YEAR_IN_MILLIS }));
-app.use(`/${DISTRIBUTION_FOLDER}`, express.static(path.resolve(__dirname) + '/dist/', { maxAge: ONE_YEAR_IN_MILLIS }));
+app.use(`/${DISTRIBUTION_FOLDER}`, staticAsset(path.resolve(__dirname, '../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
+app.use(`/${DISTRIBUTION_FOLDER}`, express.static(path.resolve(__dirname, '../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
 app.use('/service-worker.js', express.static((`./${DISTRIBUTION_FOLDER}/service-worker.js`)));
 
 /**
@@ -39,7 +39,12 @@ app.set('views', __dirname + '/views');
 /**
  * View engine
  * */
-app.engine('.hbs', exphbs({ extname: '.hbs' }));
+app.engine('.hbs', exphbs({
+    extname:'.hbs',
+    partialsDir: [
+        __dirname + '/views/partials'
+    ]
+}));
 app.set('view engine', '.hbs');
 
 /**
@@ -67,5 +72,5 @@ app.get('*', (req, res) => {
  * Run app at port
  * */
 app.listen(APP_PORT_NUM, () => {
-    console.log(`Server started at http://localhost:${APP_PORT_NUM}`);
+    console.log(`Server ${process.env.NODE_ENV === 'production' ? 'started' : 'building'} at http://localhost:${APP_PORT_NUM}`);
 });
