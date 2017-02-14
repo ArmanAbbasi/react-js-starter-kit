@@ -1,9 +1,13 @@
 import React from 'react';
 
+const handleClick = () => {
+  alert('click 1');
+};
+
 const Map = () => {
     return (
         <div>
-            MAP 2
+            <button onClick={handleClick}>Btn</button>
         </div>
     );
 };

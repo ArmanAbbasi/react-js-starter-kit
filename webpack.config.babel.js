@@ -6,6 +6,7 @@ import  HtmlWebpackPlugin from 'html-webpack-plugin';
 export default {
     entry: {
         app: path.resolve(__dirname, 'src', 'App.js'),
+        client: path.resolve(__dirname, 'src', 'client.js'),
         main: path.resolve(__dirname, 'src/stylesheets', 'global.scss'),
         vendor: [
             'react'
@@ -30,16 +31,23 @@ export default {
     module: {
         rules: [{
             test: /\.js$/,
+            exclude: /node_modules/,
             use: [
                 'react-hot-loader',
                 'babel-loader'
             ]
         }, {
             test: /\.scss$/,
+            exclude: /node_modules/,
             loader: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [{
                     loader: 'css-loader',
+                    options: {
+                        sourceMap: false
+                    }
+                }, {
+                    loader: 'postcss-loader',
                     options: {
                         sourceMap: false
                     }
@@ -74,6 +82,11 @@ export default {
             template: 'src/views/partials/embeds.template.html',
             inject: false,
             genFileText: '<!-- This is a generated file -->'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         })
     ],
 
