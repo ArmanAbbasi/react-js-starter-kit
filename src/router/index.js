@@ -12,6 +12,11 @@ const Routes = (app) => {
         let reactHtml = ReactDOMServer.renderToString(Factory({}));
         res.render('index', { reactOutput: reactHtml });
     });
+
+    app.get('/listing', (req,res) => {
+        let reactHtml = ReactDOMServer.renderToString(Factory({}));
+        res.render('listing', { reactOutput: reactHtml });
+    });
 };
 
 export default Routes;
