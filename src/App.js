@@ -1,19 +1,10 @@
 import React from 'react';
 import Map from './components/Map';
 
-// const App = (props) => (
-//     <div className="{this.props}">
-//         <Map/>
-//     </div>
-// );
-
-class App extends React.Component {
+export default class App extends React.Component {
     componentDidMount() {
         console.log('mounted');
-    }
-
-    handleClick() {
-        alert('clicked');
+        console.log(this);
     }
 
     render() {
@@ -22,5 +13,3 @@ class App extends React.Component {
         );
     }
 }
-
-export default App;

@@ -9,7 +9,7 @@ import App from '../App';
  * */
 const Routes = (app) => {
     app.get('/', (req,res) => {
-        let reactHtml = ReactDOMServer.renderToString(<App/>);
+        let reactHtml = ReactDOMServer.renderToString(<App props="testing"/>);
         res.render('index', { reactOutput: reactHtml });
     });
 

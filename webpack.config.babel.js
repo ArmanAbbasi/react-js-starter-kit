@@ -78,8 +78,8 @@ export default {
             name: 'vendor'
         }),
         new HtmlWebpackPlugin({
-            filename: '../src/views/partials/embeds.hbs',
-            template: 'src/views/partials/embeds.template.html',
+            filename: '../src/views/layout/partials/embeds.hbs',
+            template: 'src/views/layout/partials/embeds.template.html',
             inject: false,
             genFileText: '<!-- This is a generated file -->'
         }),

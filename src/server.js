@@ -34,7 +34,7 @@ app.use('/service-worker.js', express.static((`./${DISTRIBUTION_FOLDER}/service-
 /**
  * Making it easier for our app to find the views
  * */
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views/layout/');
 
 /**
  * View engine
@@ -42,8 +42,8 @@ app.set('views', __dirname + '/views');
 app.engine('.hbs', exphbs({
     extname:'.hbs',
     defaultLayout: 'main',
-    partialsDir: __dirname + '/views/partials',
-    layoutsDir: __dirname + '/views/layouts'
+    partialsDir: __dirname + '/views/layout/partials',
+    layoutsDir: __dirname + '/views/layout'
 }));
 app.set('view engine', '.hbs');
 
