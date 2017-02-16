@@ -68,6 +68,4 @@ app.get('*', (req, res) => {
 /**
  * Run app at port
  * */
-app.listen(APP_PORT_NUM, () => {
-    console.log(`Server ${process.env.NODE_ENV === 'production' ? 'started' : 'building'} at http://localhost:${APP_PORT_NUM}`);
-});
+app.listen(APP_PORT_NUM, () => console.log(`Server running at http://localhost:${APP_PORT_NUM}`));
