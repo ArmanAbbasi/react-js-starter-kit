@@ -5,16 +5,15 @@ import  HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
     entry: {
-        // app: path.resolve(__dirname, 'src', 'App.js'),
-        client: path.resolve(__dirname, 'src', 'client.js'),
-        main: path.resolve(__dirname, 'src/stylesheets', 'global.scss'),
+        client: path.resolve(__dirname, '../', 'client.js'),
+        main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
         vendor: [
             'react'
         ]
     },
 
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../../dist'),
         publicPath: '/dist/',
         filename: `[name].${process.env.NODE_ENV === 'production' ? '[chunkhash].' : ''}js`
     },

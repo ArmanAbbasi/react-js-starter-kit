@@ -12,8 +12,8 @@
   },
   "scripts": {
     "dev": "{ node src/server & npm run watch & }",
-    "build": "rimraf dist/* && cross-env NODE_ENV=production webpack --config webpack.config.babel.js --progress --hide-modules",
-    "watch": "rimraf dist/* && webpack --watch --progress --colors",
+    "build": "rimraf dist/* && cross-env NODE_ENV=production webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
+    "watch": "rimraf dist/* && webpack --config ./src/config/webpack.config.babel.js --watch --progress --colors",
     "serve": "cross-env NODE_ENV=production node src/server"
   },
   "devDependencies": {
