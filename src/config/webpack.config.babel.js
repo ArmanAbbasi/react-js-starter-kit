@@ -8,7 +8,9 @@ export default {
         client: path.resolve(__dirname, '../', 'client.js'),
         main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
         vendor: [
-            'react'
+            'react',
+            'react-dom',
+            'react-router'
         ]
     },
 
