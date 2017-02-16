@@ -5,7 +5,7 @@ import  HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
     entry: {
-        client: path.resolve(__dirname, '../', 'client.js'),
+        client: path.resolve(__dirname, '../init/', 'client.js'),
         main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
         vendor: [
             'react',
