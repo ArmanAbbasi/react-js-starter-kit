@@ -1,17 +1,11 @@
-/* globals view */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, browserHistory } from 'react-router';
 
-console.log(view);
-
-import App from './app';
-
-
-// var initialState = window.__INITIAL_STATE__;
-// store = store.configureStore(initialState);
+import routes from './router/routes';
 
 ReactDOM.render(
-    <App/>,
+    <Router routes={routes} history={browserHistory}/>,
     document.getElementById('app')
 );
 

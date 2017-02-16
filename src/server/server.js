@@ -1,3 +1,4 @@
+import React from 'react';
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
@@ -5,7 +6,10 @@ import staticAsset from 'static-asset';
 import zLib from 'zlib';
 import handlebars  from 'express-handlebars';
 import nodeJsx from 'node-jsx';
-import Router from '../router';
+import ReactDOMServer from 'react-dom/server';
+import { match, RouterContext } from 'react-router';
+
+import routes from '../router/routes';
 
 const ONE_YEAR_IN_MILLIS = 31557600000;
 const APP_PORT_NUM = process.env.PORT || 3000;
@@ -13,6 +17,9 @@ const DISTRIBUTION_FOLDER = 'dist';
 
 const app = express();
 
+/**
+ * Transpile Jsx from node.
+ * */
 nodeJsx.install();
 
 /**
@@ -44,9 +51,14 @@ app.engine('.hbs', handlebars({
 }));
 
 /**
- * Use the routes
+ * Direct all paths to react-router and match the URLs.
  * */
-Router(app);
+app.get('*', (req, res) => {
+    match({ routes: routes, location: req.url }, (err, redirect, props) => {
+        let reactHtml = ReactDOMServer.renderToString(<RouterContext {...props}/>);
+        res.render('index', { reactOutput: reactHtml });
+    });
+});
 
 /**
  * Gzip compression
