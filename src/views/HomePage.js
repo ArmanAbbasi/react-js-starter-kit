@@ -1,13 +1,11 @@
 import React from 'react';
-
-const handleClick = () => {
-    alert('click 1');
-};
+import Map from '../components/Map';
 
 const HomePage = () => {
     return (
         <div>
-            <button onClick={handleClick}>HomePage</button>
+            Home page
+            <Map />
         </div>
     );
 };

@@ -1,26 +1,22 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import ReactDOMServer from 'react-dom/server';
 
 import HomePage from '../views/HomePage';
 import Listing from '../views/Listing';
-//import NotFound from '../views/NotFound';
 
-export default (store) => {
-    return (
-        <Route path="/" component={App}>
-            <IndexRoute component={HomePage}/>
+/**
+ * Registering our routes
+ * */
+const Routes = (app) => {
+    app.get('/', (req,res) => {
+        let reactHtml = ReactDOMServer.renderToString(<HomePage/>);
+        res.render('index', { reactOutput: reactHtml, view: JSON.stringify(HomePage) });
+    });
 
-            {/*{ /* Routes requiring login */ }*/}
-            {/*<Route onEnter={requireLogin}>*/}
-                {/*<Route path="chat" component={Chat}/>*/}
-                {/*<Route path="loginSuccess" component={LoginSuccess}/>*/}
-            {/*</Route>*/}
-
-            { /* Routes */ }
-            <Route path="listing" component={Listing}/>
-
-            { /* Catch all route */ }
-            {/*<Route path="*" component={NotFound} status={404} />*/}
-        </Route>
-    );
+    app.get('/listing', (req,res) => {
+        let reactHtml = ReactDOMServer.renderToString(<Listing/>);
+        res.render('index', { reactOutput: reactHtml, view: './views/Listing' });
+    });
 };
+
+export default Routes;

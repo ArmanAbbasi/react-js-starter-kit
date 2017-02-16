@@ -1,14 +1,17 @@
+/* globals view */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 
-// var routes = require('./routes').routes;
-//
+console.log(view);
+
+import App from './app';
+
+
 // var initialState = window.__INITIAL_STATE__;
 // store = store.configureStore(initialState);
 
 ReactDOM.render(
-    <App client={this}/>,
+    <App/>,
     document.getElementById('app')
 );
 

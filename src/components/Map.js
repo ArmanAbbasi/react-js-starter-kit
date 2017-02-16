@@ -5,10 +5,9 @@ const handleClick = () => {
 };
 
 const Map = (props) => {
-    console.log(props);
     return (
         <div>
-            <button className={props} onClick={handleClick}>Btn</button>
+            <button className={props.view} onClick={handleClick}>Btn</button>
         </div>
     );
 };
