@@ -44,9 +44,7 @@ app.set('views', path.resolve(__dirname, '../views/layout/'));
 app.set('view engine', '.hbs');
 app.engine('.hbs', handlebars({
     extname:'.hbs',
-    defaultLayout: 'main',
-    partialsDir: path.resolve(__dirname, '../views/layout/partials'),
-    layoutsDir: path.resolve(__dirname, '../views/layout/')
+    partialsDir: path.resolve(__dirname, '../views/layout/partials')
 }));
 
 /**
