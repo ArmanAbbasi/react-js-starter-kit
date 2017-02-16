@@ -9,11 +9,10 @@ import nodeJsx from 'node-jsx';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 
-import routes from '../router/routes';
+import routes from '../router';
 
 const ONE_YEAR_IN_MILLIS = 31557600000;
 const APP_PORT_NUM = process.env.PORT || 3000;
-const DISTRIBUTION_FOLDER = 'dist';
 
 const app = express();
 
@@ -25,9 +24,9 @@ nodeJsx.install();
 /**
  * Indicating our static folder and setting caching duration
  * */
-app.use(`/${DISTRIBUTION_FOLDER}`, staticAsset(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
-app.use(`/${DISTRIBUTION_FOLDER}`, express.static(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
-app.use('/service-worker.js', express.static((`./${DISTRIBUTION_FOLDER}/service-worker.js`)));
+app.use('/dist', staticAsset(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
+app.use('/dist', express.static(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
+app.use('/service-worker.js', express.static(path.resolve(__dirname, '../../dist/service-worker.js')));
 
 /**
  * Removing the baked in header field
