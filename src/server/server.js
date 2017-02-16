@@ -41,8 +41,8 @@ app.set('views', path.resolve(__dirname, '../views/layout/'));
 /**
  * View engine
  * */
-app.set('view engine', '.hbs');
-app.engine('.hbs', handlebars({
+app.set('view engine', 'hbs');
+app.engine('hbs', handlebars({
     extname:'.hbs',
     partialsDir: path.resolve(__dirname, '../views/layout/partials')
 }));
