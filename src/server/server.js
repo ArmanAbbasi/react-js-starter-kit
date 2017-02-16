@@ -22,6 +22,14 @@ const app = express();
 nodeJsx.install();
 
 /**
+ * Gzip compression
+ * */
+app.use(compression({
+    threshold: 0,
+    level: zLib.Z_BEST_COMPRESSION
+}));
+
+/**
  * Indicating our static folder and setting caching duration
  * */
 app.use('/dist', staticAsset(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
@@ -56,14 +64,6 @@ app.get('*', (req, res) => {
         res.render('index', { reactOutput: reactHtml });
     });
 });
-
-/**
- * Gzip compression
- * */
-app.use(compression({
-    threshold: 0,
-    level: zLib.Z_BEST_COMPRESSION
-}));
 
 /**
  * Run app at port
