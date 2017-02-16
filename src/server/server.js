@@ -1,12 +1,5 @@
-require('babel-core/register')({
-    presets: [
-        'stage-0',
-        'es2015',
-        'react'
-    ],
-    ignore: /node_modules/
-});
-require('./router');
+
+require('./../router/index');
 
 const fs = require('fs');
 const path = require('path');
@@ -31,6 +24,8 @@ app.use(`/${DISTRIBUTION_FOLDER}`, staticAsset(path.resolve(__dirname, '../dist/
 app.use(`/${DISTRIBUTION_FOLDER}`, express.static(path.resolve(__dirname, '../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
 app.use('/service-worker.js', express.static((`./${DISTRIBUTION_FOLDER}/service-worker.js`)));
 
+app.disable('x-powered-by');
+
 /**
  * Making it easier for our app to find the views
  * */
@@ -50,7 +45,9 @@ app.set('view engine', '.hbs');
 /**
  * Routes
  * */
-require('./router').default(app);
+//require('./router').default(app);
+//require('./file').default(app);
+app.use((req, res) => require('./../file').default);
 
 /**
  * Gzip compression is a must

@@ -8,7 +8,7 @@ import App from './App';
 // store = store.configureStore(initialState);
 
 ReactDOM.render(
-    <App/>,
+    <App client={this}/>,
     document.getElementById('app')
 );
 

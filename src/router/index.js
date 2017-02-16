@@ -1,22 +1,26 @@
-import ReactDOMServer from 'react-dom/server';
 import React from 'react';
-import App from '../App';
+import {IndexRoute, Route} from 'react-router';
 
-//let Factory = React.createFactory(App);
+import HomePage from '../views/HomePage';
+import Listing from '../views/Listing';
+//import NotFound from '../views/NotFound';
 
-/**
- * Registering our routes
- * */
-const Routes = (app) => {
-    app.get('/', (req,res) => {
-        let reactHtml = ReactDOMServer.renderToString(<App props="testing"/>);
-        res.render('HomePage', { reactOutput: reactHtml });
-    });
+export default (store) => {
+    return (
+        <Route path="/" component={App}>
+            <IndexRoute component={HomePage}/>
 
-    app.get('/listing', (req,res) => {
-        let reactHtml = ReactDOMServer.renderToString(<App/>);
-        res.render('Listing', { reactOutput: reactHtml });
-    });
+            {/*{ /* Routes requiring login */ }*/}
+            {/*<Route onEnter={requireLogin}>*/}
+                {/*<Route path="chat" component={Chat}/>*/}
+                {/*<Route path="loginSuccess" component={LoginSuccess}/>*/}
+            {/*</Route>*/}
+
+            { /* Routes */ }
+            <Route path="listing" component={Listing}/>
+
+            { /* Catch all route */ }
+            {/*<Route path="*" component={NotFound} status={404} />*/}
+        </Route>
+    );
 };
-
-export default Routes;

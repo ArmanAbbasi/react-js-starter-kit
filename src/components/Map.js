@@ -4,10 +4,11 @@ const handleClick = () => {
   alert('click 1');
 };
 
-const Map = () => {
+const Map = (props) => {
+    console.log(props);
     return (
         <div>
-            <button onClick={handleClick}>Btn</button>
+            <button className={props} onClick={handleClick}>Btn</button>
         </div>
     );
 };

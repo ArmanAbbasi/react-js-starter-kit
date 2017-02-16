@@ -1,15 +1,11 @@
 import React from 'react';
 import Map from './components/Map';
 
-export default class App extends React.Component {
-    componentDidMount() {
-        console.log('mounted');
-        console.log(this);
-    }
+const App = (props) => {
+    console.log(props);
+    return (
+        <Map test={props.view}/>
+    );
+};
 
-    render() {
-        return (
-            <Map/>
-        );
-    }
-}
+export default App;
