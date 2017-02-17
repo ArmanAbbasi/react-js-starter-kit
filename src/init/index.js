@@ -3,10 +3,14 @@
  * */
 require('babel-core/register')({
     presets: [
-        'stage-0',
         'es2015',
         'react'
     ],
-    ignore: /node_modules/
+    ignore: [
+        /node_modules/
+    ]
 });
+require.extensions['.scss'] = () => {
+    return undefined;
+};
 require('./server');
