@@ -23,12 +23,12 @@ const app = express();
  * */
 const accessLogStream = fs.createWriteStream((() => {
     try {
-        fs.mkdirSync(path.join(__dirname, '../logs/'));
+        fs.mkdirSync(path.join(__dirname, '../../logs/'));
     } catch(e) {
         if ( e.code != 'EEXIST' ) throw e;
     }
 
-    return path.join(__dirname, `../logs/access_${(new Date()).toISOString()}.log`);
+    return path.join(__dirname, `../../logs/access_${(new Date()).toISOString()}.log`);
 })(), { flags: 'a' });
 
 app.use(morgan('combined', {
