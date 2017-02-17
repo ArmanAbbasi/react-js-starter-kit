@@ -43,20 +43,14 @@ export default {
             loader: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [{
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: false
-                    }
+                    loader: 'css-loader'
                 }, {
                     loader: 'postcss-loader',
                     options: {
-                        sourceMap: false
+                        config: path.resolve(__dirname, './')
                     }
                 }, {
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: false
-                    }
+                    loader: 'sass-loader'
                 }]
             })
         }]
