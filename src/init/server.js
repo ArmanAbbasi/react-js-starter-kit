@@ -66,6 +66,14 @@ app.get('*', (req, res) => {
 });
 
 /**
+ * Handling error 500.
+ * */
+app.use((err, req, res) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+/**
  * Run app at port
  * */
 app.listen(APP_PORT_NUM, () => console.log(`Server running at http://localhost:${APP_PORT_NUM}`));
