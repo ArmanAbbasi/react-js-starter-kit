@@ -1,9 +1,11 @@
-import webpack from 'webpack';
 import path from 'path';
+import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import  HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-export default {
+const isProduction = process.env.NODE_ENV === 'production';
+
+let config = {
     entry: {
         client: path.resolve(__dirname, '../init/', 'client.js'),
         main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
@@ -17,7 +19,7 @@ export default {
     output: {
         path: path.resolve(__dirname, '../../dist'),
         publicPath: '/dist/',
-        filename: `[name].${process.env.NODE_ENV === 'production' ? '[chunkhash].' : ''}js`
+        filename: `[name].${isProduction ? '[chunkhash].' : ''}js`
     },
 
     resolve: {
@@ -57,16 +59,10 @@ export default {
 
     plugins: [
         new ExtractTextPlugin({
-            filename: `[name].${process.env.NODE_ENV === 'production' ? '[chunkhash].' : ''}css`
+            filename: `[name].${isProduction ? '[chunkhash].' : ''}css`
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            compress: {
-                warnings: false
-            }
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
@@ -79,10 +75,21 @@ export default {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
+                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
         })
     ],
 
     devtool: 'source-map'
 };
+
+if (isProduction) {
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        comments: false,
+        compress: {
+            warnings: false
+        }
+    }));
+}
+
+export default config;
