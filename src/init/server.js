@@ -9,6 +9,7 @@ import handlebars  from 'express-handlebars';
 import nodeJsx from 'node-jsx';
 import ReactDOMServer from 'react-dom/server';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import { match, RouterContext } from 'react-router';
 
 import routes from '../router';
@@ -56,9 +57,9 @@ app.use('/dist', express.static(path.resolve(__dirname, '../../dist/'), { maxAge
 app.use('/service-worker.js', express.static(path.resolve(__dirname, '../../dist/service-worker.js')));
 
 /**
- * Removing the baked in header field
+ * Set some security related header details
  * */
-app.disable('x-powered-by');
+app.use(helmet());
 
 /**
  * Making it easier for our app to find the views
