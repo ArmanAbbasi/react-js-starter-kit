@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "npm run server | npm run watch",
-    "server": "node src/init",
+    "server": "rimraf src/logs/* | node src/init",
     "build": "rimraf dist/* && cross-env NODE_ENV=production webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
     "watch": "rimraf dist/* && webpack --config ./src/config/webpack.config.babel.js --watch --progress --colors",
     "serve": "cross-env NODE_ENV=production node src/init"
@@ -53,6 +53,7 @@
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
     "history": "^4.5.1",
+    "morgan": "^1.8.1",
     "node-jsx": "^0.13.3",
     "path": "^0.12.7",
     "react": "^15.4.2",

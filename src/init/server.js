@@ -1,5 +1,6 @@
 import React from 'react';
 import path from 'path';
+import fs from 'fs';
 import express from 'express';
 import compression from 'compression';
 import staticAsset from 'static-asset';
@@ -7,6 +8,7 @@ import zLib from 'zlib';
 import handlebars  from 'express-handlebars';
 import nodeJsx from 'node-jsx';
 import ReactDOMServer from 'react-dom/server';
+import morgan from 'morgan';
 import { match, RouterContext } from 'react-router';
 
 import routes from '../router';
@@ -15,6 +17,23 @@ const ONE_YEAR_IN_MILLIS = 31557600000;
 const APP_PORT_NUM = process.env.PORT || 3000;
 
 const app = express();
+
+/**
+ * Setting up the logger
+ * */
+const accessLogStream = fs.createWriteStream((() => {
+    try {
+        fs.mkdirSync(path.join(__dirname, '../logs/'));
+    } catch(e) {
+        if ( e.code != 'EEXIST' ) throw e;
+    }
+
+    return path.join(__dirname, `../logs/access_${(new Date()).toISOString()}.log`);
+})(), { flags: 'a' });
+
+app.use(morgan('combined', {
+    stream: accessLogStream
+}));
 
 /**
  * Transpile Jsx from node.
