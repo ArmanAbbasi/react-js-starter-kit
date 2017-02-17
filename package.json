@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "npm run server | npm run watch",
-    "server": "rimraf src/logs/* | node src/init",
+    "server": "rimraf logs/* | node src/init",
     "build": "rimraf dist/* && cross-env NODE_ENV=production webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
     "watch": "rimraf dist/* && webpack --config ./src/config/webpack.config.babel.js --watch --progress --colors",
     "serve": "cross-env NODE_ENV=production node src/init"
