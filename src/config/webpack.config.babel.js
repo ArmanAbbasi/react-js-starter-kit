@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ImageMinPlugin from 'imagemin-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -81,6 +82,12 @@ let config = {
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            }
+        }),
+        new ImageMinPlugin({
+            disable: false,
+            pngquant: {
+                quality: '95-100'
             }
         })
     ],
