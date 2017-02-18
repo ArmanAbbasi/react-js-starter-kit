@@ -2,6 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -58,6 +59,10 @@ let config = {
     },
 
     plugins: [
+        new CopyWebpackPlugin([{
+            context: './src/',
+            from: 'images/**/*'
+        }]),
         new ExtractTextPlugin({
             filename: `[name].${isProduction ? '[chunkhash].' : ''}css`
         }),
