@@ -85,7 +85,7 @@ let config = {
             }
         }),
         new ImageMinPlugin({
-            disable: false,
+            disable: !isProduction,
             pngquant: {
                 quality: '95-100'
             }
