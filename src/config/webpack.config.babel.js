@@ -46,7 +46,10 @@ let config = {
             loader: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [{
-                    loader: 'css-loader'
+                    loader: 'css-loader',
+                    options: {
+                        minimize: isProduction
+                    }
                 }, {
                     loader: 'postcss-loader',
                     options: {
@@ -66,9 +69,6 @@ let config = {
         }]),
         new ExtractTextPlugin({
             filename: `[name].${isProduction ? '[chunkhash].' : ''}css`
-        }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
