@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import Map from '../components/map/Map';
 
-const HomePage = (props) => {
+const HomePage = () => {
     return (
         <div>
             Home page
