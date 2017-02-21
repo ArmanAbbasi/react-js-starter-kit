@@ -47,6 +47,7 @@
     "webpack-isomorphic-tools": "^2.6.6"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "babel-preset-es2015": "^6.22.0",
     "babel-register": "^6.22.0",
     "body-parser": "^1.16.0",

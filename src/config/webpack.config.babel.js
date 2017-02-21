@@ -92,6 +92,10 @@ let config = {
         })
     ],
 
+    node: {
+        fs: 'empty'
+    },
+
     devtool: isProduction ? 'cheap-source-map' : 'cheap-module-eval-source-map'
 };
 

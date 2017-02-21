@@ -11,6 +11,7 @@ import ReactDOMServer from 'react-dom/server';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { match, RouterContext } from 'react-router';
+import api from '../api';
 
 import routes from '../router';
 
@@ -74,6 +75,11 @@ app.engine('hbs', handlebars({
     extname:'.hbs',
     partialsDir: path.resolve(__dirname, '../views/layout/partials')
 }));
+
+/**
+ * Bind the APIs
+ * */
+api(app);
 
 /**
  * Direct all paths to react-router and match the URLs.
