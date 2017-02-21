@@ -3,7 +3,7 @@
         "*.scss"
     ],
     "presets": [
-        "stage-0",
+        "stage-3",
         "es2015",
         "react"
     ],
