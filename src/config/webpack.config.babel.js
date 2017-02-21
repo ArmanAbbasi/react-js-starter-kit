@@ -92,7 +92,7 @@ let config = {
         })
     ],
 
-    devtool: 'source-map'
+    devtool: isProduction ? 'cheap-source-map' : 'cheap-module-eval-source-map'
 };
 
 if (isProduction) {
