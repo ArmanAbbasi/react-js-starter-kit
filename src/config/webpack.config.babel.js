@@ -6,7 +6,6 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ImageMinPlugin from 'imagemin-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
-
 let config = {
     entry: {
         client: path.resolve(__dirname, '../init/', 'client.js'),
@@ -30,7 +29,10 @@ let config = {
             'client',
             'common',
             'node_modules'
-        ]
+        ],
+        alias: {
+            'BLAH': '../components'
+        }
     },
 
     module: {
