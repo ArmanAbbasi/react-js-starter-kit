@@ -7,12 +7,7 @@
         "latest",
         "react"
     ],
-    "env": {
-        "node": {
-            "plugins": [
-                [ "babel-plugin-transform-require-ignore", { "extensions": [".scss", ".css"] } ],
-                [ "babel-plugin-webpack-alias", { "config": "/src/config/webpack.config.babel.js" } ]
-            ]
-        }
-    }
+    "plugins": [
+        [ "babel-plugin-webpack-alias", { "config": "./src/config/webpack.config.babel.js" } ]
+    ]
 }

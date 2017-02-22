@@ -24,14 +24,13 @@ let config = {
     },
 
     resolve: {
-        extensions: ['.js', '.css', '.scss'],
         modules: [
             'client',
             'common',
             'node_modules'
         ],
         alias: {
-            'BLAH': '../components'
+            'components': path.resolve(__dirname, '../components')
         }
     },
 

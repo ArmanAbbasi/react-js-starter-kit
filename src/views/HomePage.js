@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import Map from '../components/map/Map';
+import Map from 'components/map/Map';
 
 const HomePage = () => {
     return (
