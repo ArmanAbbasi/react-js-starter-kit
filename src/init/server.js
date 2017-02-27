@@ -7,12 +7,12 @@ import staticAsset from 'static-asset';
 import zLib from 'zlib';
 import handlebars  from 'express-handlebars';
 import nodeJsx from 'node-jsx';
-import ReactDOMServer from 'react-dom/server';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { match, RouterContext } from 'react-router';
-import api from '../api';
+import { renderToString } from 'react-dom/server';
 
+import api from '../api';
 import routes from '../router';
 
 const ONE_YEAR_IN_MILLIS = 31557600000;
@@ -82,12 +82,18 @@ app.engine('hbs', handlebars({
 api(app);
 
 /**
- * Direct all paths to react-router and match the URLs.
+ * Handle status codes and direct all other paths to react-router.
  * */
 app.get('*', (req, res) => {
-    match({ routes: routes, location: req.url }, (err, redirect, props) => {
-        let reactHtml = ReactDOMServer.renderToString(<RouterContext {...props}/>);
-        res.render('index', { reactOutput: reactHtml });
+    match({ routes: routes, location: req.url }, (error, redirect, props) => {
+        if (error) {
+            res.status(500).send(error.message);
+        } else if (redirect) {
+            res.redirect(302, redirect.pathname + redirect.search);
+        } else if (props) {
+            res.status(200);
+            res.render('index', { reactOutput: renderToString(<RouterContext {...props} />) });
+        }
     });
 });
 
