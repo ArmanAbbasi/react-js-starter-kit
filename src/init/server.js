@@ -11,7 +11,11 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { match, RouterContext } from 'react-router';
 import { renderToString } from 'react-dom/server';
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
+import webpackConfig from '../config/webpack.config.babel.js';
 import api from '../api';
 import routes from '../router';
 
@@ -19,6 +23,22 @@ const ONE_YEAR_IN_MILLIS = 31557600000;
 const APP_PORT_NUM = process.env.PORT || 3000;
 
 const app = express();
+
+if (process.env.NODE_ENV === 'development') {
+    const compiler = webpack(webpackConfig);
+    app.use(webpackDevMiddleware(compiler, {
+        publicPath: webpackConfig.output.publicPath,
+        noInfo: true,
+        hot: true,
+        inline: true,
+        watchOptions: {
+            poll: true
+        }
+    }));
+    app.use(webpackHotMiddleware(compiler, {
+        log: console.log
+    }));
+}
 
 /**
  * Setting up the logger
@@ -81,10 +101,7 @@ app.engine('hbs', handlebars({
  * */
 api(app);
 
-/**
- * Handle status codes and direct all other paths to react-router.
- * */
-app.get('*', (req, res) => {
+const handleRequest = (req, res) => {
     match({ routes: routes, location: req.url }, (error, redirect, props) => {
         if (error) {
             res.status(500).send(error.message);
@@ -95,15 +112,22 @@ app.get('*', (req, res) => {
             res.render('index', { reactOutput: renderToString(<RouterContext {...props} />) });
         }
     });
-});
+};
+
+//app.get(handleRequest);
+
+/**
+ * Handle status codes and direct all other paths to react-router.
+ * */
+app.get('*', handleRequest);
 
 /**
  * Handling error 500.
  * */
-app.use((err, req, res) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-});
+// app.use((err, req, res) => {
+//     console.error(err.stack);
+//     res.status(500).send('Something broke!');
+// });
 
 /**
  * Run app at port
