@@ -9,6 +9,10 @@ ReactDOM.render(
     document.getElementById('app')
 );
 
+// if(module.hot) {
+//     module.hot.accept();
+// }
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js').then(function(registration) {

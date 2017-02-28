@@ -9,7 +9,7 @@ const handleClick = () => {
 const Map = () => {
     return (
         <div className="map">
-            <button className="map__button" onClick={handleClick}>Btn</button>
+            <button className="map__button" onClick={handleClick}>Btn 3</button>
         </div>
     );
 };

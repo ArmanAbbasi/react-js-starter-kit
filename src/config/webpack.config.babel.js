@@ -6,8 +6,10 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ImageMinPlugin from 'imagemin-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
+
 let config = {
     entry: {
+        hotReload: 'webpack-hot-middleware/client',
         client: path.resolve(__dirname, '../init/', 'client.js'),
         main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
         vendor: [
@@ -90,7 +92,8 @@ let config = {
             pngquant: {
                 quality: '95-100'
             }
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     node: {

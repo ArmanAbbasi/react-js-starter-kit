@@ -11,10 +11,11 @@
     "url": "https://github.com/ArmanAbbasi/react-js-starter-kit/issues"
   },
   "scripts": {
-    "dev": "rimraf logs/* && cross-env NODE_ENV=development node src/init",
-    "build": "rimraf dist/* && cross-env NODE_ENV=production webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
-    "watch": "rimraf dist/* && webpack --config ./src/config/webpack.config.babel.js --watch --progress --colors",
-    "prod": "cross-env NODE_ENV=production node src/init"
+    "clean": "rimraf dist/*",
+    "build:prod": "npm run clean && cross-env NODE_ENV=production webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
+    "build:dev": "npm run clean && cross-env NODE_ENV=development webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
+    "dev": "npm run clean && npm run build:dev && cross-env NODE_ENV=development node src/init",
+    "prod": "npm run clean && npm run build:prod && cross-env NODE_ENV=production node src/init"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.6",

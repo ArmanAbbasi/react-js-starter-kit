@@ -28,12 +28,7 @@ if (process.env.NODE_ENV === 'development') {
     const compiler = webpack(webpackConfig);
     app.use(webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
-        noInfo: true,
-        hot: true,
-        inline: true,
-        watchOptions: {
-            poll: true
-        }
+        noInfo: true
     }));
     app.use(webpackHotMiddleware(compiler, {
         log: console.log

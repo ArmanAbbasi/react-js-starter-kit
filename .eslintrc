@@ -16,7 +16,7 @@
     "parser": "babel-eslint",
 
     "rules": {
-        "indent": [2, 4],
+        "indent": [2, 4, {"SwitchCase": 1}],
         "comma-dangle": [2, "never"],
         "quotes": [2, "single"],
         "semi": [2, "always"]
