@@ -16,6 +16,7 @@
     "build:dev": "npm run clean && cross-env NODE_ENV=development webpack --config ./src/config/webpack.config.babel.js --progress --hide-modules",
     "dev": "npm run clean && npm run build:dev && cross-env NODE_ENV=development node src/init",
     "prod": "npm run clean && npm run build:prod && cross-env NODE_ENV=production node src/init"
+    "serve": "cross-env NODE_ENV=production node src/init"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.6",

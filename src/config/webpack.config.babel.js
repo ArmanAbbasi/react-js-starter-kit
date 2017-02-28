@@ -9,7 +9,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 let config = {
     entry: {
-        hotReload: 'webpack-hot-middleware/client',
         client: path.resolve(__dirname, '../init/', 'client.js'),
         main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
         vendor: [
@@ -22,7 +21,7 @@ let config = {
     output: {
         path: path.resolve(__dirname, '../../dist'),
         publicPath: '/dist/',
-        filename: `[name].${isProduction ? '[chunkhash].' : ''}js`
+        filename: `[name].${isProduction ? '[hash].' : ''}js`
     },
 
     resolve: {
@@ -71,7 +70,7 @@ let config = {
             from: 'images/**/*'
         }]),
         new ExtractTextPlugin({
-            filename: `[name].${isProduction ? '[chunkhash].' : ''}css`
+            filename: `[name].${isProduction ? '[hash].' : ''}css`
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
@@ -102,6 +101,10 @@ let config = {
 
     devtool: isProduction ? 'cheap-source-map' : 'cheap-module-eval-source-map'
 };
+
+if (!isProduction) {
+    config.entry.hotReload = 'webpack-hot-middleware/client';
+}
 
 if (isProduction) {
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({

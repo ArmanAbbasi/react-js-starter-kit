@@ -9,9 +9,12 @@ ReactDOM.render(
     document.getElementById('app')
 );
 
-// if(module.hot) {
-//     module.hot.accept();
-// }
+if(module.hot) {
+    module.hot.accept(
+        <Router routes={routes} history={browserHistory}/>,
+        document.getElementById('app')
+    );
+}
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
