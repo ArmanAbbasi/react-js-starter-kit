@@ -101,7 +101,10 @@ app.engine('hbs', handlebars({
  * */
 api(app);
 
-const handleRequest = (req, res) => {
+/**
+ * Handle status codes and direct all other paths to react-router.
+ * */
+app.get('*', (req, res) => {
     match({ routes: routes, location: req.url }, (error, redirect, props) => {
         if (error) {
             res.status(500).send(error.message);
@@ -112,22 +115,7 @@ const handleRequest = (req, res) => {
             res.render('index', { reactOutput: renderToString(<RouterContext {...props} />) });
         }
     });
-};
-
-//app.get(handleRequest);
-
-/**
- * Handle status codes and direct all other paths to react-router.
- * */
-app.get('*', handleRequest);
-
-/**
- * Handling error 500.
- * */
-// app.use((err, req, res) => {
-//     console.error(err.stack);
-//     res.status(500).send('Something broke!');
-// });
+});
 
 /**
  * Run app at port
