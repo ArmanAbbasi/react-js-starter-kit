@@ -15,7 +15,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import webpackConfig from '../config/webpack.config.babel.js';
+import webpackConfig from '../config/webpack.config.dev.babel.js';
 import api from '../api';
 import routes from '../router';
 
@@ -23,6 +23,8 @@ const ONE_YEAR_IN_MILLIS = 31557600000;
 const APP_PORT_NUM = process.env.PORT || 3000;
 
 const app = express();
+
+console.log('HIHIHIHIHI: ', process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'development') {
     const compiler = webpack(webpackConfig);
