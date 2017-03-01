@@ -15,7 +15,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import webpackConfig from '../config/webpack.config.dev.babel.js';
+import webpackConfig from '../config/webpack.config.prod.babel.js';
 import api from '../api';
 import routes from '../router';
 

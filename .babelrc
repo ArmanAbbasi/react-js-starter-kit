@@ -8,6 +8,6 @@
         "react"
     ],
     "plugins": [
-        [ "babel-plugin-webpack-alias", { "config": "./src/config/webpack.config.babel.js" } ]
+        [ "babel-plugin-webpack-alias", { "config": "./src/config/webpack.config.base.babel.js" } ]
     ]
 }

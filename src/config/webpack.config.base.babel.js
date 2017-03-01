@@ -26,6 +26,7 @@ export default {
             'node_modules'
         ],
         alias: {
+            'components': path.resolve(__dirname, '../components')
         }
     },
 
