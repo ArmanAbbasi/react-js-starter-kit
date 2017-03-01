@@ -91,19 +91,21 @@ let config = {
             pngquant: {
                 quality: '95-100'
             }
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        })
     ],
 
     node: {
         fs: 'empty'
     },
 
-    devtool: isProduction ? 'cheap-source-map' : 'cheap-module-eval-source-map'
+    devtool: isProduction ? 'cheap-source-map' : 'eval'
 };
 
 if (!isProduction) {
-    config.entry.hotReload = 'webpack-hot-middleware/client';
+    config.entry.hotReload = [
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
+    ];
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
 if (isProduction) {
