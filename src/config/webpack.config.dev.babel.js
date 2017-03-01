@@ -37,12 +37,7 @@ const config = Object.assign({}, baseConfig, {
     },
 
     plugins: (baseConfig.plugins || []).concat([
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-            }
-        })
+        new webpack.HotModuleReplacementPlugin()
     ]),
 
     devtool: 'eval'

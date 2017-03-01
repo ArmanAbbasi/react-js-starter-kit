@@ -24,8 +24,6 @@ const APP_PORT_NUM = process.env.PORT || 3000;
 
 const app = express();
 
-console.log('HIHIHIHIHI: ', process.env.NODE_ENV);
-
 if (process.env.NODE_ENV === 'development') {
     const compiler = webpack(webpackConfig);
     app.use(webpackDevMiddleware(compiler, {

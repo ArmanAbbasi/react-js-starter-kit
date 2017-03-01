@@ -34,11 +34,6 @@ const config = Object.assign({}, baseConfig, {
     },
 
     plugins: (baseConfig.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-            }
-        }),
         new ImageMinPlugin({
             pngquant: {
                 quality: '95-100'
