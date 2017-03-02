@@ -5,13 +5,13 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
     entry: {
-        client: path.resolve(__dirname, '../init/', 'client.js'),
-        main: path.resolve(__dirname, '../stylesheets', 'global.scss'),
-        vendor: [
+        'vendor': [
             'react',
             'react-dom',
             'react-router'
-        ]
+        ],
+        'client': path.resolve(__dirname, '../init/', 'client.js'),
+        'main': path.resolve(__dirname, '../stylesheets', 'global.scss')
     },
 
     output: {
@@ -41,6 +41,9 @@ export default {
     },
 
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
@@ -50,9 +53,6 @@ export default {
             context: './src/',
             from: 'images/**/*'
         }]),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
         new HtmlWebpackPlugin({
             filename: '../src/views/layout/partials/embeds.hbs',
             template: 'src/views/layout/partials/embeds.template.html',

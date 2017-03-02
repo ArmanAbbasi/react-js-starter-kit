@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import OfflinePlugin from 'offline-plugin';
 import ImageMinPlugin from 'imagemin-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
@@ -47,7 +48,8 @@ const config = Object.assign({}, baseConfig, {
         }),
         new ExtractTextPlugin({
             filename: '[name].[hash].css'
-        })
+        }),
+        new OfflinePlugin()
     ]),
 
     devtool: 'cheap-source-map'

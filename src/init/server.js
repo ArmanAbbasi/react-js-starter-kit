@@ -11,11 +11,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { match, RouterContext } from 'react-router';
 import { renderToString } from 'react-dom/server';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import webpackConfig from '../config/webpack.config.prod.babel.js';
 import api from '../api';
 import routes from '../router';
 
@@ -25,11 +21,18 @@ const APP_PORT_NUM = process.env.PORT || 3000;
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {
+    const webpack = require('webpack');
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+
+    const webpackConfig = require('../config/webpack.config.dev.babel.js').default;
     const compiler = webpack(webpackConfig);
+
     app.use(webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
         noInfo: true
     }));
+
     app.use(webpackHotMiddleware(compiler, {
         log: console.log
     }));
@@ -70,7 +73,7 @@ app.use(compression({
  * */
 app.use('/dist', staticAsset(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
 app.use('/dist', express.static(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
-app.use('/service-worker.js', express.static(path.resolve(__dirname, '../../dist/service-worker.js')));
+//app.use('/service-worker.js', express.static(path.resolve(__dirname, '../../dist/service-worker.js')));
 
 /**
  * Set some security related header details
