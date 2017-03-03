@@ -73,7 +73,6 @@ app.use(compression({
  * */
 app.use('/dist', staticAsset(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
 app.use('/dist', express.static(path.resolve(__dirname, '../../dist/'), { maxAge: ONE_YEAR_IN_MILLIS }));
-//app.use('/service-worker.js', express.static(path.resolve(__dirname, '../../dist/service-worker.js')));
 
 /**
  * Set some security related header details

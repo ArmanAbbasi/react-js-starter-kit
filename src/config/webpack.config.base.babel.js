@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import OfflinePlugin from 'offline-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
@@ -58,7 +59,8 @@ export default {
             template: 'src/views/layout/partials/embeds.template.html',
             inject: false,
             genFileText: '<!-- This is a generated file -->'
-        })
+        }),
+        new OfflinePlugin()
     ],
 
     node: {
